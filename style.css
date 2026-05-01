@@ -81,7 +81,7 @@ body::before {
     pointer-events: none;
 }
 
-/* --- Sparkle --- */
+/* --- Cursor Sparkle --- */
 .sparkle {
     position: fixed;
     width: 5px;
@@ -98,12 +98,28 @@ body::before {
     100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
 }
 
+/* --- Card Sparkles (lamp glow) --- */
+.card-sparkle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--gold-primary);
+    pointer-events: none;
+    z-index: 50;
+    box-shadow: 0 0 5px rgba(212, 175, 55, 1), 0 0 12px rgba(212, 175, 55, 0.7);
+    animation: cardSparkleShoot var(--dur, 0.8s) ease-out forwards;
+}
+
+@keyframes cardSparkleShoot {
+    0%   { transform: translate(0, 0) scale(1); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+}
+
 /* --- Navbar --- */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 20px 0;
+    padding: 10px 0;
     z-index: 100;
     border-bottom: 3px solid var(--glass-border);
     background: rgba(13, 13, 13, 0.5);
@@ -337,6 +353,7 @@ body::before {
     padding: 40px;
     border-radius: 4px;
     transition: transform 0.3s ease, border-color 0.3s ease;
+    position: relative;
 }
 
 .glass-card:hover {
@@ -408,6 +425,7 @@ body::before {
 }
 
 .input-group input {
+    width: 100%;
     background: rgba(0, 0, 0, 0.5);
     border: 3px solid var(--glass-border);
     padding: 12px 15px;
@@ -415,6 +433,7 @@ body::before {
     font-family: var(--font-body);
     outline: none;
     transition: border-color 0.3s;
+    box-sizing: border-box;
 }
 
 .input-group input:focus {
@@ -464,6 +483,67 @@ input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     font-size: 0.9rem;
     letter-spacing: 1px;
     color: #666;
+}
+
+/* --- Section Lamp --- */
+.section-lamp {
+    position: absolute;
+    top: 24px;
+    right: 28px;
+    width: 42px;
+    height: 42px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1.5px solid rgba(212, 175, 55, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 9px;
+    z-index: 10;
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.section-lamp svg {
+    width: 100%;
+    height: 100%;
+    color: rgba(212, 175, 55, 0.35);
+    transition: color 0.3s ease, filter 0.3s ease;
+}
+
+.section-lamp:hover svg {
+    color: rgba(212, 175, 55, 0.7);
+}
+
+.section-lamp.lit {
+    border-color: var(--gold-primary);
+    background: rgba(212, 175, 55, 0.1);
+    animation: lampBorderPulse 2.5s ease-in-out infinite;
+}
+
+.section-lamp.lit svg {
+    color: var(--gold-primary);
+    filter: drop-shadow(0 0 6px rgba(212, 175, 55, 0.9)) drop-shadow(0 0 14px rgba(212, 175, 55, 0.5));
+    animation: lampIconPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes lampBorderPulse {
+    0%, 100% { box-shadow: 0 0 8px rgba(212, 175, 55, 0.3); }
+    50%       { box-shadow: 0 0 20px rgba(212, 175, 55, 0.7); }
+}
+
+@keyframes lampIconPulse {
+    0%, 100% { filter: drop-shadow(0 0 4px rgba(212, 175, 55, 0.7)); }
+    50%       { filter: drop-shadow(0 0 12px rgba(212, 175, 55, 1)) drop-shadow(0 0 22px rgba(212, 175, 55, 0.5)); }
+}
+
+.section.glowing .glass-card {
+    border-color: rgba(212, 175, 55, 0.85);
+    box-shadow:
+        0 0 20px rgba(212, 175, 55, 0.25),
+        0 0 50px rgba(212, 175, 55, 0.1),
+        inset 0 0 25px rgba(212, 175, 55, 0.04);
+    transition: box-shadow 0.5s ease, border-color 0.5s ease;
 }
 
 /* --- Animations --- */
