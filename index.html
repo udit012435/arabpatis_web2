@@ -9,38 +9,29 @@
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <div class="logo"><img src="assets/logo-3.png" alt="Arabpatis Logo"></div>
-
-            <div class="nav-brand">
-                <span class="nav-brand-title">ARABPATIS</span>
-            </div>
-
-            <a href="#contact" class="btn-outline nav-signin-desktop">CONTACT US</a>
-
-            <button class="hamburger" aria-label="Open menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </div>
-    </nav>
-
-    <ul class="nav-links">
-        <li class="nav-close-item">
-            <button class="nav-close-btn" aria-label="Close menu">&#10005;</button>
-        </li>
-        <li class="nav-signin-mobile">
-            <a href="#contact" class="btn-outline">CONTACT US</a>
-        </li>
-    </ul>
-
-    <div class="tagline-bar">
-        <span class="tagline-bar-text">Private, Professional, Perfect</span>
-    </div>
-
     <header class="hero">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo"><img src="assets/logo-3.png" alt="Arabpatis Logo"></div>
+
+                <div class="nav-brand">
+                    <span class="nav-brand-title">ARABPATIS</span>
+                </div>
+
+                <a href="#contact" class="btn-outline nav-signin-desktop">CONTACT US</a>
+
+                <button class="hamburger" aria-label="Open menu" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </nav>
+
+        <div class="tagline-bar">
+            <span class="tagline-bar-text"></span>
+        </div>
+
         <video class="hero-video" autoplay muted loop playsinline>
             <source src="assets/hero-vid.mp4" type="video/mp4">
         </video>
@@ -67,6 +58,15 @@
             </div> -->
         </div>
     </header>
+
+    <ul class="nav-links">
+        <li class="nav-close-item">
+            <button class="nav-close-btn" aria-label="Close menu">&#10005;</button>
+        </li>
+        <li class="nav-signin-mobile">
+            <a href="#contact" class="btn-outline">CONTACT US</a>
+        </li>
+    </ul>
 
     <section class="section sovereign-section">
         <!-- <button class="section-lamp" aria-label="Toggle light">
@@ -253,6 +253,18 @@
     </footer>
 
     <script>
+        (function typewriterOnce() {
+            const el   = document.querySelector('.tagline-bar-text');
+            const text = 'Private, Professional, Perfect';
+            let i = 0;
+
+            function tick() {
+                el.textContent = text.slice(0, ++i);
+                if (i < text.length) setTimeout(tick, 70);
+            }
+            tick();
+        })();
+
         const hamburger = document.querySelector('.hamburger');
         const navLinks  = document.querySelector('.nav-links');
         const navCloseBtn = document.querySelector('.nav-close-btn');
