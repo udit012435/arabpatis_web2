@@ -166,22 +166,6 @@ body::before {
     pointer-events: none;
 }
 
-/* --- Cursor Sparkle --- */
-.sparkle {
-    position: fixed;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: var(--gold-primary);
-    pointer-events: none;
-    z-index: 9999;
-    animation: sparkleAnim 0.8s ease-out forwards;
-}
-
-@keyframes sparkleAnim {
-    0%   { transform: translate(0, 0) scale(1); opacity: 1; }
-    100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
-}
 
 /* --- Card Sparkles (lamp glow) --- */
 .card-sparkle {
@@ -296,18 +280,11 @@ body::before {
 }
 
 .tagline-bar-text::after {
-    content: '|';
-    color: var(--gold-primary);
-    animation: blink 0.75s step-end infinite;
+    content: '';
 }
 
 .tagline-bar-text.typing-done::after {
-    animation: blink 0.75s step-end infinite;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0; }
+    content: '';
 }
 
 /* --- Nav drawer defaults --- */
